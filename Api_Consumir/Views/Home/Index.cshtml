@@ -1,0 +1,57 @@
+﻿@model List<Producto>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+@if (TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        <strong>Exito!!</strong>  @TempData["AlertMessage"]
+    </div>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Lista de Productos</h1>
+  
+</div>
+
+<div class="card text-center">
+    <div class="card-header">
+       
+    </div>
+    <div class="card-body">
+        <a asp-action="Registrar" asp-controller="Home"  class="btn btn-success btn-sm">Nuevo Producto</a>
+      <hr  />
+      <table class="table">
+          <thead>
+              <tr>
+                  <th>Codigo Barra</th>
+                    <th>Nombre</th>
+                   <th>Marca</th>
+                   <th>Categoria</th>
+                   <th>Precio</th>
+                   <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.CodigoBarra</td>
+                        <td>@item.Nombre</td>
+                        <td>@item.Marca</td>
+                        <td>@item.Categoria</td>
+                        <td>@item.Precio</td>
+                        <td><a asp-action="ProductoBuscar" asp-controller="Home" asp-route-idProducto="@item.iDpRODUCTO" class="btn btn-primary btn-sm">Editar </a>
+                            <a asp-action="Eliminar" asp-controller="Home" asp-route-idProducto="@item.iDpRODUCTO" class="btn btn-danger btn-sm">Borrar</a>
+                        
+                        </td>
+                        
+                    </tr>
+                }
+            </tbody>
+
+      </table>
+    </div>
+    
+</div>
